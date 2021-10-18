@@ -11,9 +11,19 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { BookingsComponent } from './bookings/bookings.component';
+import { RegistrationComponent } from './registration/registration.component';
+import { MatCardModule } from '@angular/material/card';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
 
 @NgModule({
-  declarations: [AppComponent, DashboardComponent, BookingsComponent],
+  declarations: [
+    AppComponent,
+    DashboardComponent,
+    BookingsComponent,
+    RegistrationComponent,
+  ],
+
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -23,6 +33,9 @@ import { BookingsComponent } from './bookings/bookings.component';
     MatIconModule,
     MatListModule,
     MatButtonModule,
+    MatCardModule,
+    MatFormFieldModule,
+    MatInputModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
