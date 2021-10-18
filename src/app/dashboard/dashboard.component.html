@@ -1,20 +1,26 @@
 <mat-toolbar color="primary">
   <mat-toolbar-row>
-    <button mat-icon-button>
+    <button style="cursor: auto" mat-icon-button>
       <mat-icon (click)="sidenav.toggle()">menu</mat-icon>
     </button>
-    <h2>Nihanth Logistics</h2>
+    <h1 class="d-flex justify-content-center">Logistics Network</h1>
   </mat-toolbar-row>
 </mat-toolbar>
+
 <mat-sidenav-container>
   <mat-sidenav #sidenav>
-    <mat-nav-list>
+    <mat-nav-list style="width: 200px">
       <a mat-list-item>Home</a>
       <a href="/bookings" mat-list-item>Bookings</a>
       <a mat-list-item>Tracking</a>
+      <a mat-list-item>About us</a>
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content>
-    <div style="height: 85vh"></div>
+    <div class="d-flex justify-content-center" style="height: 91vh">
+      <img
+        src="https://oandalogistics.com/wp-content/uploads/2019/02/AdobeStock-138283960-min-1024x410.jpeg"
+      />
+    </div>
   </mat-sidenav-content>
 </mat-sidenav-container>
