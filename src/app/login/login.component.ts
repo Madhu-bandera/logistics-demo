@@ -33,6 +33,7 @@ export class LoginComponent implements OnInit {
   ]);
 
   matcher = new MyErrorStateMatcher();
+  hide = true;
 
   constructor() {}
 
