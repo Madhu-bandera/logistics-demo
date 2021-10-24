@@ -1,51 +1,49 @@
 import { Component, OnInit } from '@angular/core';
-import {
-    FormControl,
-    FormGroupDirective,
-    NgForm,
-    Validators,
-} from '@angular/forms';
-import { ErrorStateMatcher } from '@angular/material/core';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { CommonService } from '../providers/common-service/common.service';
 
-export class MyErrorStateMatcher implements ErrorStateMatcher {
-    isErrorState(
-        control: FormControl | null,
-        form: FormGroupDirective | NgForm | null
-    ): boolean {
-        const isSubmitted = form && form.submitted;
-        return !!(
-            control &&
-            control.invalid &&
-            (control.dirty || control.touched || isSubmitted)
-        );
-    }
-}
-
 @Component({
-    selector: 'app-login',
-    templateUrl: './login.component.html',
-    styleUrls: ['./login.component.scss'],
+  selector: 'app-login',
+  templateUrl: './login.component.html',
+  styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent implements OnInit {
-    emailFormControl = new FormControl('', [
-        Validators.required,
-        Validators.email,
-    ]);
+  userLogin!: FormGroup;
 
-    matcher = new MyErrorStateMatcher();
-    hide = true;
+  constructor(private fb: FormBuilder, private service: CommonService) {}
 
-    constructor(private service: CommonService) { }
+  ngOnInit(): void {
+    this.userLogin = this.fb.group({
+      email: [
+        '',
+        [
+          Validators.required,
+          Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$'),
+        ],
+      ],
+      password: [
+        '',
+        [
+          Validators.required,
+          Validators.pattern(
+            '(?=.*[A-Za-z])(?=.*[0-9])(?=.*[$@$!#^~%*?&,.<>"\'\\;:{\\}\\[\\]\\|\\+\\-\\=\\_\\)\\(\\)\\`\\/\\\\\\]])[A-Za-z0-9d$@].{7,}'
+          ),
+        ],
+      ],
+    });
+  }
+  submit() {
+    console.log('Email id', this.userLogin.controls.email.valid);
+    console.log('password', this.userLogin.controls.password.valid);
 
-    ngOnInit(): void { }
+    console.log(this.userLogin.value);
 
-
-    submit() {
-        const obj = {
-            "email": "oknizam321@gmail.com",
-            "password": "1234"
-        }
-        this.service.post("auth/login", obj).then(res => console.log("response", res))
-    }
+    const obj = {
+      email: 'oknizam321@gmail.com',
+      password: '1234',
+    };
+    this.service
+      .post('auth/login', obj)
+      .then((res) => console.log('response', res));
+  }
 }
