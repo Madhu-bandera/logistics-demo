@@ -2,48 +2,48 @@
   <mat-card-header class="d-flex justify-content-center my-4">
     <mat-card-title><b>Sign In</b></mat-card-title>
   </mat-card-header>
+</div>
 
-  <mat-card-content class="d-flex justify-content-center my-2">
-    <mat-form-field class="example-full-width" style="width: 300px">
-      <input
-        type="email"
-        matInput
-        [formControl]="emailFormControl"
-        [errorStateMatcher]="matcher"
-        placeholder="Email"
-      />
-
-      <mat-error
-        *ngIf="
-          emailFormControl.hasError('email') &&
-          !emailFormControl.hasError('required')
-        "
-      >
-        Please enter a valid email address
-      </mat-error>
-      <mat-error *ngIf="emailFormControl.hasError('required')">
-        Email is <strong>required</strong>
-      </mat-error>
-    </mat-form-field>
-  </mat-card-content>
-  <mat-card-content class="d-flex justify-content-center">
-    <mat-form-field class="example-full-width" style="width: 300px">
+<form [formGroup]="userLogin">
+  <div class="d-flex justify-content-center">
+    <mat-form-field
+      style="width: 300px; font-size: 16px"
+      class="example-full-width"
+      ><mat-label>Email</mat-label>
       <input
         matInput
-        placeholder="Password"
-        [type]="hide ? 'password' : 'text'"
+        type="text"
+        placeholder="Enter your email id"
+        formControlName="email"
+        [ngClass]="{
+          'is-valid': userLogin.controls.email.valid,
+          'is-invalid': !userLogin.controls.email.valid
+        }"
+        id="validationServer0"
+        required
       />
-      <button
-        mat-icon-button
-        matSuffix
-        (click)="hide = !hide"
-        [attr.aria-label]="'Hide password'"
-        [attr.aria-pressed]="hide"
-      >
-        <mat-icon>{{ hide ? "visibility_off" : "visibility" }}</mat-icon>
-      </button>
     </mat-form-field>
-  </mat-card-content>
+  </div>
+  <div class="d-flex justify-content-center">
+    <mat-form-field
+      style="width: 300px; font-size: 16px"
+      class="example-full-width"
+      ><mat-label>Password</mat-label>
+      <input
+        matInput
+        type="password"
+        placeholder="Enter your password"
+        formControlName="password"
+        [ngClass]="{
+          'is-valid': userLogin.controls.password.valid,
+          'is-invalid': !userLogin.controls.password.valid
+        }"
+        id="validationServer01"
+        required
+      />
+    </mat-form-field>
+  </div>
+
   <div class="d-flex justify-content-center my-4">
     <button
       mat-raised-button
@@ -55,4 +55,4 @@
       Sign-in
     </button>
   </div>
-</div>
+</form>
