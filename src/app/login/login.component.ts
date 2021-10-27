@@ -33,10 +33,14 @@ export class LoginComponent implements OnInit {
     });
   }
   submit() {
-    console.log('Email id', this.userLogin.controls.email.valid);
-    console.log('password', this.userLogin.controls.password.valid);
+    console.log('Email', this.userLogin.controls.email.valid);
+    console.log('Password', this.userLogin.controls.password.valid);
 
-    console.log(this.userLogin.value);
+    if (this.userLogin.valid) {
+      console.log(this.userLogin.value);
+    } else {
+      alert('please enter email id & password');
+    }
 
     const obj = {
       email: 'oknizam321@gmail.com',
