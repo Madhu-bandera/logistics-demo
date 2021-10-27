@@ -9,11 +9,11 @@
     <mat-form-field
       style="width: 300px; font-size: 16px"
       class="example-full-width"
-      ><mat-label>Email</mat-label>
+    >
       <input
         matInput
+        placeholder="Email id"
         type="text"
-        placeholder="Enter your email id"
         formControlName="email"
         [ngClass]="{
           'is-valid': userLogin.controls.email.valid,
@@ -31,8 +31,8 @@
       ><mat-label>Password</mat-label>
       <input
         matInput
+        placeholder="Password"
         type="password"
-        placeholder="Enter your password"
         formControlName="password"
         [ngClass]="{
           'is-valid': userLogin.controls.password.valid,
@@ -52,7 +52,7 @@
       class="btn-block"
       (click)="submit()"
     >
-      Sign-in
+      <b> Sign-in </b>
     </button>
   </div>
 </form>
